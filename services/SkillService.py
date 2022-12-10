@@ -15,6 +15,12 @@ class SkillService(Base):
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
 
+    def dict(self):
+        return {
+            "SkillId": str(self.SkillId),
+            "SkillName": str(self.SkillName)
+        }
+
 
 class SkillVacancyService(Base):
     __tablename__ = 'vacancies_skills'
@@ -24,6 +30,14 @@ class SkillVacancyService(Base):
     VacancyId = Column(UUID(as_uuid=True), ForeignKey(VacancyService.VacancyId))
     SkillYearExperience = Column(Integer)
 
+    def dict(self):
+        return {
+            "SkillVacancyId": str(self.SkillVacancyId),
+            "SkillId": str(self.SkillId),
+            "VacancyId": str(self.VacancyId),
+            "SkillYearExperience": str(self.SkillYearExperience)
+        }
+
 
 class SkillUserService(Base):
     __tablename__ = 'users_skills'
@@ -32,5 +46,13 @@ class SkillUserService(Base):
     SkillId = Column(UUID(as_uuid=True), ForeignKey(SkillService.SkillId))
     UserId = Column(UUID(as_uuid=True), ForeignKey(UserService.UserId))
     SkillYearExperience = Column(Integer)
+
+    def dict(self):
+        return {
+            "SkillUserId": str(self.SkillUserId),
+            "SkillId": str(self.SkillId),
+            "UserId": str(self.UserId),
+            "SkillYearExperience": str(self.SkillYearExperience)
+        }
 
 Base.metadata.create_all()

@@ -14,4 +14,11 @@ class CompanyService(Base):
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
 
+    def dict(self):
+        return {
+            "CompanyId": str(self.CompanyId),
+            "CompanyName": str(self.CompanyName),
+            "CompanyWebsite": str(self.CompanyWebsite)
+        }
+
 Base.metadata.create_all()

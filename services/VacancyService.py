@@ -27,4 +27,14 @@ class VacancyService(Base):
     def with_company(self, Company: CompanyService | CompanyModel):
         self.CompanyId = Company.CompanyId
 
+    def dict(self):
+        return {
+            "VacancyId": str(self.VacancyId),
+            "CompanyId": str(self.CompanyId),
+            "PositionName": str(self.PositionName),
+            "Salary": float(self.Salary),
+            "Currency": str(self.Currency),
+            "VacancyLink": str(self.VacancyLink),
+        }
+
 Base.metadata.create_all()

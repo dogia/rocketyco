@@ -18,4 +18,13 @@ class UserService(Base):
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
 
+    def dict(self):
+        return {
+            "UserId": str(self.UserId),
+            "FirstName": str(self.FirstName),
+            "LastName": str(self.LastName),
+            "Email": str(self.Email),
+            "YearPreviousExperience": str(self.YearPreviousExperience)
+        }
+
 Base.metadata.create_all()
