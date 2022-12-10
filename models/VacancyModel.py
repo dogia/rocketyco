@@ -7,7 +7,7 @@ from models.SkillModel import SkillModel
 
 class VacancyModel(BaseModel):
     VacancyId: UUID4 = Field(default_factory=uuid4)
-    CompanyId: UUID4
+    CompanyId: Optional[UUID4]
     PositionName: str
     Salary: Optional[float]
     Currency: Optional[str]
