@@ -7,11 +7,11 @@ from core.db import Base
 class CompanyService(Base):
     __tablename__ = 'companies'
 
-    CompanyId: Column(UUID(as_uuid=True), primary_key=True, default=uuid4)
-    CompanyName: Column(String(255), unique=True)
-    CompanyWebsite: Column(Text, unique=True)
-
-    # TODO: Vacancies
+    CompanyId = Column(UUID(as_uuid=True), primary_key=True, default=uuid4)
+    CompanyName = Column(String(255), unique=True)
+    CompanyWebsite = Column(Text, unique=True)
 
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
+
+Base.metadata.create_all()
