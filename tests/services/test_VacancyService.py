@@ -1,4 +1,6 @@
+import services.SkillService # Do not remove Required for VacancyService
 from services.VacancyService import VacancyService
+
 
 
 def test_properties():
