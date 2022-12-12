@@ -31,7 +31,7 @@ async def create(CompanyMd: CompanyModel, session=None) -> CommonApiResponse:
 
         # Save the company
         CompanySv = CompanyService(**CompanyDict)
-        print(session.add(CompanySv))
+        session.add(CompanySv)
 
         result.payload = CompanyMd
 

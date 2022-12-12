@@ -18,7 +18,6 @@ class VacancyService(Base):
     VacancyLink = Column(Text, unique=True)
     
     RequiredSkills = relationship("SkillVacancyService", backref="vacancies.VacancyId")
-    # TODO: RequiredSkills: relation()
 
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())

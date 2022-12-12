@@ -1,5 +1,6 @@
 from uuid import uuid4
 from sqlalchemy import Column, DateTime, Integer, String, Text, func
+from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.postgresql import UUID
 from core.db import Base
 
@@ -14,6 +15,7 @@ class UserService(Base):
     YearPreviousExperience = Column(Integer)
 
     # TODO: Skills
+    Skills = relationship("SkillUserService", backref="users.UserId")
 
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
