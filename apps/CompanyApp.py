@@ -8,7 +8,6 @@ from models.CompanyModel import CompanyModel
 from services.CompanyService import CompanyService
 
 from apps.VacancyApp import create as create_vacancy, delete_from_company as delete_vacancies_from_company, list_from_company
-from services.VacancyService import VacancyService
 
 CompanyApp = FastAPI(
     title=os.getenv('TITLE') + " | Company",

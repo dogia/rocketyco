@@ -121,3 +121,43 @@ async def remove_required_skills_from_vacancy(response: Response, VacancyId: UUI
                 session.rollback()
     finally:
         return result
+
+
+@SkillApp.get('/{VacancyId}', status_code=status.HTTP_200_OK)
+async def list_required_skills_from_vacancy(response: Response, VacancyId: UUID4, session=None) -> CommonApiResponse:
+    result = CommonApiResponse(message='Operación exitosa!')
+    try:
+        # It let us continue with a transaction
+        if session is None:
+            session = SessionLocal()
+
+        SkillSv = session.query(SkillVacancyService).filter(SkillVacancyService.VacancyId == VacancyId)
+
+        if SkillSv is None:
+            response.status_code=status.HTTP_404_NOT_FOUND
+            raise Exception('No se ha encontrado ningún registro')
+
+        skillsSv = SkillSv.all()
+
+        skills = []
+
+        for s in skillsSv:
+            name = session\
+                .query(SkillService)\
+                .filter(SkillService.SkillId == s.SkillId)\
+                .first().SkillName
+            SkillM = SkillModel(
+                SkillId=s.SkillId,
+                SkillName=name,
+                SkillYearExperience=s.SkillYearExperience
+            )
+            skills.append(SkillM)
+
+        result.payload = skills
+
+    except Exception as e:
+        print(e)
+        result.message="Ha ocurrido un error"
+        result.payload=str(e)
+    finally:
+        return result

@@ -12,4 +12,4 @@ class VacancyModel(BaseModel):
     Salary: Optional[float]
     Currency: Optional[str]
     VacancyLink: Optional[str]
-    RequiredSkills: List[SkillModel]
+    RequiredSkills: Optional[List[SkillModel]]

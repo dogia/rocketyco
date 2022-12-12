@@ -28,13 +28,29 @@ class VacancyService(Base):
         self.CompanyId = Company.CompanyId
 
     def dict(self):
+        if self.Salary is not None:
+            salary = float(self.Salary)
+        else:
+            salary = None
+        
+        if self.Currency is not None:
+            currency = str(self.Currency)
+        else:
+            currency = None
+
+        if self.VacancyLink is not None:
+            vacancyLink = str(self.VacancyLink)
+        else:
+            vacancyLink = None
+
         return {
             "VacancyId": str(self.VacancyId),
             "CompanyId": str(self.CompanyId),
             "PositionName": str(self.PositionName),
-            "Salary": float(self.Salary),
-            "Currency": str(self.Currency),
-            "VacancyLink": str(self.VacancyLink),
+            "Salary": salary,
+            "Currency": currency,
+            "VacancyLink": vacancyLink,
+            "RequiredSkills": []
         }
 
 Base.metadata.create_all()
