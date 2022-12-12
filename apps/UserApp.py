@@ -7,6 +7,7 @@ from core.CommonApiResponse import CommonApiResponse
 from core.db import SessionLocal
 from models.SkillModel import SkillModel
 from models.UserModel import UserModel
+from models.VacancyModel import VacancyModel
 from services.SkillService import SkillService, SkillUserService, SkillVacancyService
 from services.UserService import UserService
 
@@ -267,10 +268,8 @@ async def detail(response: Response, id: str, session=None) -> CommonApiResponse
         
         if session is None:
             shouldCommit = True
-            session = SessionLocal()
-
-        UserSkillSv = session.query(SkillUserService).filter(SkillUserService.UserId == id).all()
-
+            session = SessionLocal()    
+        UserSkillSv = session.query(SkillUserService).filter(SkillUserService.UserId == id).all()   
         UserSkillsMd = {}
         skills = []
         for s in UserSkillSv:
@@ -279,41 +278,36 @@ async def detail(response: Response, id: str, session=None) -> CommonApiResponse
                 SkillName=session.query(SkillService).filter(SkillService.SkillId == s.SkillId).first().SkillName,
                 SkillYearExperience=s.SkillYearExperience
             )
-            UserSkillsMd[s.SkillId] = UserSkillMd
-            skills.append(s.SkillId)
-    
+            UserSkillsMd[str(s.SkillId)] = UserSkillMd
+            skills.append(str(s.SkillId))
+
         PossibleVacancies = session\
             .query(SkillVacancyService)\
             .distinct(SkillVacancyService.VacancyId)\
-            .filter(SkillVacancyService.VacancyId.in_(skills))\
+            .filter(SkillVacancyService.SkillId.in_(skills))\
             .all()
-        
-        vacancies = []
-        
+
+        result.payload = [] 
         for pv in PossibleVacancies:
             RequiredSkills = session\
                 .query(SkillVacancyService)\
-                .filter(SkillVacancyService.SkillVacancyId == pv.VacancyId)\
+                .filter(SkillVacancyService.VacancyId == str(pv.VacancyId))\
                 .all()
-            
-            coeficiente = 0
 
+            coeficiente = 0 
             for rs in RequiredSkills:
-                UserExp = UserSkillsMd[rs.SkillId].SkillYearExperience
-                if rs.SkillYearExperience - UserExp > 0:
-                    coeficiente = 1 / len(RequiredSkills)
-            
+                if str(rs.SkillId) in UserSkillsMd:
+                    UserExp = UserSkillsMd[str(rs.SkillId)].SkillYearExperience
+                    if float(UserExp) >= float(rs.SkillYearExperience):
+                        coeficiente += 1 / len(RequiredSkills)  
             if coeficiente >= 0.5:
-                vacancies.append(
+                result.payload.append(
                     (await detail_vacancy(
                         response=response,
-                        VacancyId=pv.VacancyId,
+                        VacancyId=str(pv.VacancyId),
                         session=session
                     )).payload
                 )
-        
-        result.payload = vacancies
-
     except Exception as e:
         print(e)
         result.message="Ha ocurrido un error"
