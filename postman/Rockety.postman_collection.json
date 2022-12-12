@@ -1,0 +1,1590 @@
+{
+	"info": {
+		"_postman_id": "5641ae97-c69f-40f1-85c2-190e4dca63bd",
+		"name": "Rockety",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10384888"
+	},
+	"item": [
+		{
+			"name": "Company",
+			"item": [
+				{
+					"name": "create",
+					"item": [
+						{
+							"name": "create basic",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"CompanyName\": \"Hunty2\",\r\n    \"CompanyWebsite\": \"https://www.hunty.com/2\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{scheme}}://{{host}}:{{port}}/company",
+									"protocol": "{{scheme}}",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"company"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "exitosa",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CompanyName\": \"Hunty\",\r\n    \"CompanyWebsite\": \"https://www.hunty.com/\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{scheme}}://{{host}}:{{port}}/company",
+											"protocol": "{{scheme}}",
+											"host": [
+												"{{host}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"company"
+											]
+										}
+									},
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"message\": \"Operación exitosa!\",\n    \"payload\": {\n        \"CompanyId\": \"ca6ae070-f7a3-4997-96a9-d79206d8d32b\",\n        \"CompanyName\": \"Hunty\",\n        \"CompanyWebsite\": \"https://www.hunty.com/\",\n        \"Vacancies\": null\n    },\n    \"datetime\": \"2022-12-10 02:27:24.417027\",\n    \"webmaster\": null\n}"
+								},
+								{
+									"name": "error duplicada",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CompanyName\": \"Hunty\",\r\n    \"CompanyWebsite\": \"https://www.hunty.com/\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{scheme}}://{{host}}:{{port}}/company",
+											"protocol": "{{scheme}}",
+											"host": [
+												"{{host}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"company"
+											]
+										}
+									},
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": false,\n    \"message\": \"Ha ocurrido un error\",\n    \"payload\": \"(psycopg2.errors.UniqueViolation) llave duplicada viola restricción de unicidad «companies_CompanyName_key»\\nDETAIL:  Ya existe la llave (\\\"CompanyName\\\")=(Hunty).\\n\\n[SQL: INSERT INTO companies (\\\"CompanyId\\\", \\\"CompanyName\\\", \\\"CompanyWebsite\\\", updated_at) VALUES (%(CompanyId)s, %(CompanyName)s, %(CompanyWebsite)s, %(updated_at)s)]\\n[parameters: {'CompanyId': UUID('2aeb1ddc-c644-4d6a-99f8-0659a1e44ec1'), 'CompanyName': 'Hunty', 'CompanyWebsite': 'https://www.hunty.com/', 'updated_at': None}]\\n(Background on this error at: https://sqlalche.me/e/14/gkpj)\",\n    \"datetime\": \"2022-12-10 02:54:06.396521\",\n    \"webmaster\": null\n}"
+								},
+								{
+									"name": "error no body",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CompanyName\": \"Hunty\",\r\n    \"CompanyWebsite\": \"https://www.hunty.com/\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{scheme}}://{{host}}:{{port}}/company",
+											"protocol": "{{scheme}}",
+											"host": [
+												"{{host}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"company"
+											]
+										}
+									},
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"detail\": [\n        {\n            \"loc\": [\n                \"body\",\n                \"CompanyName\"\n            ],\n            \"msg\": \"field required\",\n            \"type\": \"value_error.missing\"\n        }\n    ]\n}"
+								}
+							]
+						},
+						{
+							"name": "create with vacancies",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"CompanyName\": \"Hunty\",\r\n    \"CompanyWebsite\": \"https://www.hunty.com/\",\r\n    \"Vacancies\": [\r\n        {\r\n            \"PositionName\": \"Backend Developer\",\r\n            \"RequiredSkills\": [\r\n                {\r\n                    \"SkillName\": \"Python\",\r\n                    \"SkillYearExperience\": 5\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{scheme}}://{{host}}:{{port}}/company",
+									"protocol": "{{scheme}}",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"company"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "response",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CompanyName\": \"Hunty\",\r\n    \"CompanyWebsite\": \"https://www.hunty.com/\",\r\n    \"Vacancies\": [\r\n        {\r\n            \"PositionName\": \"Backend Developer\",\r\n            \"RequiredSkills\": [\r\n                {\r\n                    \"SkillName\": \"Python\",\r\n                    \"SkillYearExperience\": 5\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{scheme}}://{{host}}:{{port}}/company",
+											"protocol": "{{scheme}}",
+											"host": [
+												"{{host}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"company"
+											]
+										}
+									},
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"message\": \"Operación exitosa!\",\n    \"payload\": {\n        \"CompanyId\": \"bc8067e2-340c-40ce-b358-cfea02ca3dad\",\n        \"CompanyName\": \"Hunty\",\n        \"CompanyWebsite\": \"https://www.hunty.com/\",\n        \"Vacancies\": [\n            {\n                \"VacancyId\": \"66086693-cf2c-413f-9b61-fee7f0b24c67\",\n                \"CompanyId\": \"bc8067e2-340c-40ce-b358-cfea02ca3dad\",\n                \"PositionName\": \"Backend Developer\",\n                \"Salary\": null,\n                \"Currency\": null,\n                \"VacancyLink\": null,\n                \"RequiredSkills\": [\n                    {\n                        \"SkillId\": \"d2b92f9a-09d1-4be6-8001-c279662aa01e\",\n                        \"SkillName\": \"Python\",\n                        \"SkillYearExperience\": 5\n                    }\n                ]\n            }\n        ]\n    },\n    \"datetime\": \"2022-12-10 02:27:24.417027\",\n    \"webmaster\": null\n}"
+								}
+							]
+						},
+						{
+							"name": "create with detailed vacancies",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"CompanyName\": \"SingleClick Solutionss\",\r\n    \"CompanyWebsite\": \"https://www.singleclick.com.co/2\",\r\n    \"Vacancies\": [\r\n        {\r\n            \"PositionName\": \"Backend Developer\",\r\n            \"Salary\": 3500000,\r\n            \"Currency\": \"COP\",\r\n            \"VacancyLink\": \"https://www.hunty.com/some-vacancy1\",\r\n            \"RequiredSkills\": [\r\n                {\r\n                    \"SkillName\": \"Python\",\r\n                    \"SkillYearExperience\": 5\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{scheme}}://{{host}}:{{port}}/company",
+									"protocol": "{{scheme}}",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"company"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "response",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"CompanyName\": \"Hunty\",\r\n    \"CompanyWebsite\": \"https://www.hunty.com/\",\r\n    \"Vacancies\": [\r\n        {\r\n            \"PositionName\": \"Backend Developer\",\r\n            \"RequiredSkills\": [\r\n                {\r\n                    \"SkillName\": \"Python\",\r\n                    \"SkillYearExperience\": 5\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{scheme}}://{{host}}:{{port}}/company",
+											"protocol": "{{scheme}}",
+											"host": [
+												"{{host}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"company"
+											]
+										}
+									},
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"message\": \"Operación exitosa!\",\n    \"payload\": {\n        \"CompanyId\": \"bc8067e2-340c-40ce-b358-cfea02ca3dad\",\n        \"CompanyName\": \"Hunty\",\n        \"CompanyWebsite\": \"https://www.hunty.com/\",\n        \"Vacancies\": [\n            {\n                \"VacancyId\": \"66086693-cf2c-413f-9b61-fee7f0b24c67\",\n                \"CompanyId\": \"bc8067e2-340c-40ce-b358-cfea02ca3dad\",\n                \"PositionName\": \"Backend Developer\",\n                \"Salary\": null,\n                \"Currency\": null,\n                \"VacancyLink\": null,\n                \"RequiredSkills\": [\n                    {\n                        \"SkillId\": \"d2b92f9a-09d1-4be6-8001-c279662aa01e\",\n                        \"SkillName\": \"Python\",\n                        \"SkillYearExperience\": 5\n                    }\n                ]\n            }\n        ]\n    },\n    \"datetime\": \"2022-12-10 02:27:24.417027\",\n    \"webmaster\": null\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "read",
+					"item": [
+						{
+							"name": "detail",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{scheme}}://{{host}}:{{port}}/company/:companyId",
+									"protocol": "{{scheme}}",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"company",
+										":companyId"
+									],
+									"variable": [
+										{
+											"key": "companyId",
+											"value": "564d38ed-28bc-4de7-939f-84758e91e0f8"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{scheme}}://{{host}}:{{port}}/company/:companyId",
+											"protocol": "{{scheme}}",
+											"host": [
+												"{{host}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"company",
+												":companyId"
+											],
+											"variable": [
+												{
+													"key": "companyId",
+													"value": "4f31a2ec-1f2d-4cef-8b96-d6f7aef8d54d"
+												}
+											]
+										}
+									},
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\r\n    \"success\": true,\r\n    \"message\": \"564d38ed-28bc-4de7-939f-84758e91e0f8\",\r\n    \"payload\": {\r\n        \"CompanyId\": \"564d38ed-28bc-4de7-939f-84758e91e0f8\",\r\n        \"CompanyName\": \"SingleClick Solutions\",\r\n        \"CompanyWebsite\": \"https://www.singleclick.com.co/\",\r\n        \"Vacancies\": [\r\n            {\r\n                \"VacancyId\": \"834a4d12-e5d8-49a2-8cd7-499b0111438d\",\r\n                \"CompanyId\": \"564d38ed-28bc-4de7-939f-84758e91e0f8\",\r\n                \"Salary\": 3500000.0,\r\n                \"VacancyLink\": \"https://www.hunty.com/some-vacancy\",\r\n                \"updated_at\": null,\r\n                \"PositionName\": \"Backend Developer\",\r\n                \"Currency\": \"COP\",\r\n                \"created_at\": \"2022-12-10T03:32:54.248644-05:00\"\r\n            }\r\n        ]\r\n    },\r\n    \"datetime\": \"2022-12-10 14:37:10.944828\",\r\n    \"webmaster\": null\r\n}"
+								},
+								{
+									"name": "no encontrado",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{scheme}}://{{host}}:{{port}}/company/:companyId",
+											"protocol": "{{scheme}}",
+											"host": [
+												"{{host}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"company",
+												":companyId"
+											],
+											"variable": [
+												{
+													"key": "companyId",
+													"value": "4f31a2ec-1f2d-4cef-8b96-d6f7aef8d54d"
+												}
+											]
+										}
+									},
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"message\": \"Ha ocurrido un error\",\n    \"payload\": \"No se ha encontrado ningún registro\",\n    \"datetime\": \"2022-12-10 14:37:10.944828\",\n    \"webmaster\": null\n}"
+								}
+							]
+						},
+						{
+							"name": "list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{scheme}}://{{host}}:{{port}}/company?limit=10&offset=0",
+									"protocol": "{{scheme}}",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"company"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "10"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "exitosa",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{scheme}}://{{host}}:{{port}}/company",
+											"protocol": "{{scheme}}",
+											"host": [
+												"{{host}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"company"
+											]
+										}
+									},
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"message\": \"Operación exitosa!\",\n    \"payload\": [\n        {\n            \"CompanyName\": \"Hunty\",\n            \"CompanyWebsite\": \"https://www.hunty.com/\",\n            \"created_at\": \"2022-12-10T03:22:44.168122-05:00\",\n            \"CompanyId\": \"47e4dfd7-d7de-4d72-b3bb-abd43f1aa8a1\",\n            \"updated_at\": null\n        },\n        {\n            \"CompanyName\": \"SingleClick Solutions\",\n            \"CompanyWebsite\": \"https://www.singleclick.com.co/\",\n            \"created_at\": \"2022-12-10T03:32:54.248644-05:00\",\n            \"CompanyId\": \"564d38ed-28bc-4de7-939f-84758e91e0f8\",\n            \"updated_at\": null\n        }\n    ],\n    \"datetime\": \"2022-12-10 03:32:06.703902\",\n    \"webmaster\": null\n}"
+								},
+								{
+									"name": "paginacion negativa",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{scheme}}://{{host}}:{{port}}/company",
+											"protocol": "{{scheme}}",
+											"host": [
+												"{{host}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"company"
+											]
+										}
+									},
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": false,\n    \"message\": \"Ha ocurrido un error\",\n    \"payload\": \"La paginación no es correcta: limit & offset > 0 limit < 1001\",\n    \"datetime\": \"2022-12-10 03:32:06.703902\",\n    \"webmaster\": null\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "update",
+					"item": [
+						{
+							"name": "update basic",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"CompanyId\": \"564d38ed-28bc-4de7-939f-84758e91e0f8\",\r\n    \"CompanyName\": \"SingleClick Solutions S.A.S.\",\r\n    \"CompanyWebsite\": \"https://www.singleclick.com.co/\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{scheme}}://{{host}}:{{port}}/company",
+									"protocol": "{{scheme}}",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"company"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "uodate and append vacancies",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"CompanyId\": \"47e4dfd7-d7de-4d72-b3bb-abd43f1aa8a1\",\r\n    \"CompanyName\": \"Hunty Test\",\r\n    \"CompanyWebsite\": \"\",\r\n    \"Vacancies\": [\r\n        {\r\n            \"PositionName\": \"Tester\",\r\n            \"Currency\": \"COP\",\r\n            \"Salary\": 2500000.0,\r\n            \"VacancyLink\": \"https://www.hunty.com/some-vacancy-27\",\r\n            \"RequiredSkills\": [\r\n                {\r\n                    \"SkillName\": \"Angular\",\r\n                    \"SkillYearExperience\": 5\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{scheme}}://{{host}}:{{port}}/company",
+									"protocol": "{{scheme}}",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"company"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "delete",
+					"item": [
+						{
+							"name": "remove all of a company",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{scheme}}://{{host}}:{{port}}/company/:companyId",
+									"protocol": "{{scheme}}",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"company",
+										":companyId"
+									],
+									"variable": [
+										{
+											"key": "companyId",
+											"value": "564d38ed-28bc-4de7-939f-84758e91e0f8"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "create",
+					"item": [
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"FirstName\": \"Daniel\",\r\n    \"LastName\": \"Osorio Orozco\",\r\n    \"Email\": \"danielosorioorozco@gmail.com3\",\r\n    \"YearPreviousExperience\": \"12\",\r\n    \"Skills\": [\r\n        {\r\n            \"SkillName\": \"Python\",\r\n            \"SkillYearExperience\": 6\r\n        }\r\n    ]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{scheme}}://{{host}}:{{port}}/user",
+									"protocol": "{{scheme}}",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"user"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "read",
+					"item": [
+						{
+							"name": "detail",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{scheme}}://{{host}}:{{port}}/user/:userId",
+									"protocol": "{{scheme}}",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"user",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "2b252289-32d5-45d9-9b91-e288223693da"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{scheme}}://{{host}}:{{port}}/company/:companyId",
+											"protocol": "{{scheme}}",
+											"host": [
+												"{{host}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"company",
+												":companyId"
+											],
+											"variable": [
+												{
+													"key": "companyId",
+													"value": "4f31a2ec-1f2d-4cef-8b96-d6f7aef8d54d"
+												}
+											]
+										}
+									},
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\r\n    \"success\": true,\r\n    \"message\": \"Operación exitosa!\",\r\n    \"payload\": {\r\n        \"VacancyId\": \"ba404ba0-ff02-4b8b-b3e2-044ad3bd9ae8\",\r\n        \"CompanyId\": \"e741e7b9-7b8d-4493-afa6-40317e4297bc\",\r\n        \"PositionName\": \"Backend Developer\",\r\n        \"Salary\": 6000000.0,\r\n        \"Currency\": null,\r\n        \"VacancyLink\": \"https://hunty.com\",\r\n        \"RequiredSkills\": [\r\n            {\r\n                \"SkillVacancyId\": \"4a6ab1a2-9263-4bd9-8467-e25d51af188c\",\r\n                \"SkillId\": \"e2954937-92fd-4f6a-8666-fc6a7fe22bbd\",\r\n                \"VacancyId\": \"ba404ba0-ff02-4b8b-b3e2-044ad3bd9ae8\",\r\n                \"SkillYearExperience\": \"5\"\r\n            }\r\n        ]\r\n    },\r\n    \"datetime\": \"2022-12-11 12:08:47.599441\",\r\n    \"webmaster\": null\r\n}"
+								},
+								{
+									"name": "no encontrado",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{scheme}}://{{host}}:{{port}}/company/:companyId",
+											"protocol": "{{scheme}}",
+											"host": [
+												"{{host}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"company",
+												":companyId"
+											],
+											"variable": [
+												{
+													"key": "companyId",
+													"value": "4f31a2ec-1f2d-4cef-8b96-d6f7aef8d54d"
+												}
+											]
+										}
+									},
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"message\": \"Ha ocurrido un error\",\n    \"payload\": \"No se ha encontrado ningún registro\",\n    \"datetime\": \"2022-12-11 12:08:47.599441\",\n    \"webmaster\": null\n}"
+								}
+							]
+						},
+						{
+							"name": "list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{scheme}}://{{host}}:{{port}}/user?limit=10&offset=0",
+									"protocol": "{{scheme}}",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"user"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "10"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "exitosa",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{scheme}}://{{host}}:{{port}}/company",
+											"protocol": "{{scheme}}",
+											"host": [
+												"{{host}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"company"
+											]
+										}
+									},
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"message\": \"Operación exitosa!\",\n    \"payload\": [\n        {\n            \"PositionName\": \"Backend Developer\",\n            \"Currency\": null,\n            \"created_at\": \"2022-12-11T11:47:50.415229-05:00\",\n            \"Salary\": null,\n            \"VacancyId\": \"8cc0fa50-6c8b-47ec-91de-32e8c66128f4\",\n            \"CompanyId\": null,\n            \"VacancyLink\": null,\n            \"updated_at\": null\n        },\n        {\n            \"PositionName\": \"Backend Developer\",\n            \"Currency\": \"COP\",\n            \"created_at\": \"2022-12-11T11:51:28.887533-05:00\",\n            \"Salary\": 3500000.0,\n            \"VacancyId\": \"1a417334-f026-4df3-86a2-d56bceee1d6b\",\n            \"CompanyId\": \"d570ea7b-e64c-449f-aff6-fcb35b9f60fc\",\n            \"VacancyLink\": \"https://www.hunty.com/some-vacancy\",\n            \"updated_at\": null\n        },\n        {\n            \"PositionName\": \"Backend Developer\",\n            \"Currency\": null,\n            \"created_at\": \"2022-12-11T11:52:05.803748-05:00\",\n            \"Salary\": null,\n            \"VacancyId\": \"a61628eb-822b-4f41-89d9-a107b4861cd6\",\n            \"CompanyId\": \"e741e7b9-7b8d-4493-afa6-40317e4297bc\",\n            \"VacancyLink\": null,\n            \"updated_at\": null\n        },\n        {\n            \"PositionName\": \"Backend Developer\",\n            \"Currency\": null,\n            \"created_at\": \"2022-12-11T11:53:47.538267-05:00\",\n            \"Salary\": null,\n            \"VacancyId\": \"bfc91e99-4cd1-4281-8abd-9ab32b7e823d\",\n            \"CompanyId\": \"e741e7b9-7b8d-4493-afa6-40317e4297bc\",\n            \"VacancyLink\": \"https://google.com.co\",\n            \"updated_at\": null\n        },\n        {\n            \"PositionName\": \"Backend Developer\",\n            \"Currency\": null,\n            \"created_at\": \"2022-12-11T11:55:12.270865-05:00\",\n            \"Salary\": 6000000.0,\n            \"VacancyId\": \"ba404ba0-ff02-4b8b-b3e2-044ad3bd9ae8\",\n            \"CompanyId\": \"e741e7b9-7b8d-4493-afa6-40317e4297bc\",\n            \"VacancyLink\": \"https://hunty.com\",\n            \"updated_at\": null\n        }\n    ],\n    \"datetime\": \"2022-12-11 12:08:47.599441\",\n    \"webmaster\": null\n}"
+								},
+								{
+									"name": "paginacion negativa",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{scheme}}://{{host}}:{{port}}/company",
+											"protocol": "{{scheme}}",
+											"host": [
+												"{{host}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"company"
+											]
+										}
+									},
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": false,\n    \"message\": \"Ha ocurrido un error\",\n    \"payload\": \"La paginación no es correcta: limit & offset > 0 limit < 1001\",\n    \"datetime\": \"2022-12-10 03:32:06.703902\",\n    \"webmaster\": null\n}"
+								}
+							]
+						},
+						{
+							"name": "match",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{scheme}}://{{host}}:{{port}}/user/match/:userId",
+									"protocol": "{{scheme}}",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"user",
+										"match",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "f09ccb8c-46ec-481f-9a4d-e50bc2c04fdd"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "delete",
+					"item": [
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{scheme}}://{{host}}:{{port}}/user/:userId",
+									"protocol": "{{scheme}}",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"user",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "update",
+					"item": [
+						{
+							"name": "update basic Copy",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"UserId\": \"2b252289-32d5-45d9-9b91-e288223693da\",\r\n    \"FirstName\": \"Backend SSr Developer\",\r\n    \"Email\": \"daniel.osorio@hunty.com\",\r\n    \"YearPreviousExperience\": 99\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{scheme}}://{{host}}:{{port}}/user",
+									"protocol": "{{scheme}}",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"user"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Vacancy",
+			"item": [
+				{
+					"name": "create",
+					"item": [
+						{
+							"name": "create basic",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"PositionName\": \"Backend Developer\",\r\n    \"CompanyId\": \"e741e7b9-7b8d-4493-afa6-40317e4297bc\",\r\n    \"RequiredSkills\": [\r\n        {\r\n            \"SkillName\": \"Python\",\r\n            \"SkillYearExperience\": 5\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{scheme}}://{{host}}:{{port}}/vacancy",
+									"protocol": "{{scheme}}",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"vacancy"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "exitosa",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"PositionName\": \"Backend Developer\",\r\n    \"CompanyId\": \"e741e7b9-7b8d-4493-afa6-40317e4297bc\",\r\n    \"RequiredSkills\": [\r\n        {\r\n            \"SkillName\": \"Python\",\r\n            \"SkillYearExperience\": 5\r\n        }\r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{scheme}}://{{host}}:{{port}}/company",
+											"protocol": "{{scheme}}",
+											"host": [
+												"{{host}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"company"
+											]
+										}
+									},
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"message\": \"Operación exitosa!\",\n    \"payload\": {\n        \"VacancyId\": \"a61628eb-822b-4f41-89d9-a107b4861cd6\",\n        \"CompanyId\": \"e741e7b9-7b8d-4493-afa6-40317e4297bc\",\n        \"PositionName\": \"Backend Developer\",\n        \"Salary\": null,\n        \"Currency\": null,\n        \"VacancyLink\": null,\n        \"RequiredSkills\": [\n            {\n                \"SkillId\": \"d901a1bb-1b87-4519-8734-bc653e5fcd9f\",\n                \"SkillName\": \"Python\",\n                \"SkillYearExperience\": 5\n            }\n        ]\n    },\n    \"datetime\": \"2022-12-11 11:50:20.026838\",\n    \"webmaster\": null\n}"
+								},
+								{
+									"name": "error url duplicada",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"PositionName\": \"Backend Developer\",\r\n    \"CompanyId\": \"e741e7b9-7b8d-4493-afa6-40317e4297bc\",\r\n    \"RequiredSkills\": [\r\n        {\r\n            \"SkillName\": \"Python\",\r\n            \"SkillYearExperience\": 5\r\n        }\r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{scheme}}://{{host}}:{{port}}/company",
+											"protocol": "{{scheme}}",
+											"host": [
+												"{{host}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"company"
+											]
+										}
+									},
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": false,\n    \"message\": \"Ha ocurrido un error\",\n    \"payload\": \"(psycopg2.errors.UniqueViolation) llave duplicada viola restricción de unicidad «vacancies_VacancyLink_key»\\nDETAIL:  Ya existe la llave (\\\"VacancyLink\\\")=(https://google.com.co).\\n\\n[SQL: INSERT INTO vacancies (\\\"VacancyId\\\", \\\"CompanyId\\\", \\\"PositionName\\\", \\\"Salary\\\", \\\"Currency\\\", \\\"VacancyLink\\\", updated_at) VALUES (%(VacancyId)s, %(CompanyId)s, %(PositionName)s, %(Salary)s, %(Currency)s, %(VacancyLink)s, %(updated_at)s)]\\n[parameters: {'VacancyId': UUID('93d58067-719e-4be8-8230-259f67fea5a2'), 'CompanyId': UUID('e741e7b9-7b8d-4493-afa6-40317e4297bc'), 'PositionName': 'Backend Developer', 'Salary': None, 'Currency': None, 'VacancyLink': 'https://google.com.co', 'updated_at': None}]\\n(Background on this error at: https://sqlalche.me/e/14/gkpj)\",\n    \"datetime\": \"2022-12-11 11:50:20.026838\",\n    \"webmaster\": null\n}"
+								},
+								{
+									"name": "error no body",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"detail\": [\r\n        {\r\n            \"loc\": [\r\n                \"body\",\r\n                \"PositionName\"\r\n            ],\r\n            \"msg\": \"field required\",\r\n            \"type\": \"value_error.missing\"\r\n        },\r\n        {\r\n            \"loc\": [\r\n                \"body\",\r\n                \"RequiredSkills\"\r\n            ],\r\n            \"msg\": \"field required\",\r\n            \"type\": \"value_error.missing\"\r\n        }\r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{scheme}}://{{host}}:{{port}}/company",
+											"protocol": "{{scheme}}",
+											"host": [
+												"{{host}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"company"
+											]
+										}
+									},
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"detail\": [\n        {\n            \"loc\": [\n                \"body\",\n                \"CompanyName\"\n            ],\n            \"msg\": \"field required\",\n            \"type\": \"value_error.missing\"\n        }\n    ]\n}"
+								}
+							]
+						},
+						{
+							"name": "create detailed",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"PositionName\": \"Backend Developer\",\r\n    \"CompanyId\": \"e741e7b9-7b8d-4493-afa6-40317e4297bc\",\r\n    \"VacancyLink\": \"https://hunty.com\",\r\n    \"Salary\": 6000000,\r\n    \"Currency\": \"COP\",\r\n    \"RequiredSkills\": [\r\n        {\r\n            \"SkillName\": \"Python\",\r\n            \"SkillYearExperience\": 5\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{scheme}}://{{host}}:{{port}}/vacancy",
+									"protocol": "{{scheme}}",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"vacancy"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "exitosa",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"PositionName\": \"Backend Developer\",\r\n    \"CompanyId\": \"e741e7b9-7b8d-4493-afa6-40317e4297bc\",\r\n    \"RequiredSkills\": [\r\n        {\r\n            \"SkillName\": \"Python\",\r\n            \"SkillYearExperience\": 5\r\n        }\r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{scheme}}://{{host}}:{{port}}/company",
+											"protocol": "{{scheme}}",
+											"host": [
+												"{{host}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"company"
+											]
+										}
+									},
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"message\": \"Operación exitosa!\",\n    \"payload\": {\n        \"VacancyId\": \"a61628eb-822b-4f41-89d9-a107b4861cd6\",\n        \"CompanyId\": \"e741e7b9-7b8d-4493-afa6-40317e4297bc\",\n        \"PositionName\": \"Backend Developer\",\n        \"Salary\": null,\n        \"Currency\": null,\n        \"VacancyLink\": null,\n        \"RequiredSkills\": [\n            {\n                \"SkillId\": \"d901a1bb-1b87-4519-8734-bc653e5fcd9f\",\n                \"SkillName\": \"Python\",\n                \"SkillYearExperience\": 5\n            }\n        ]\n    },\n    \"datetime\": \"2022-12-11 11:50:20.026838\",\n    \"webmaster\": null\n}"
+								},
+								{
+									"name": "error url duplicada",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"PositionName\": \"Backend Developer\",\r\n    \"CompanyId\": \"e741e7b9-7b8d-4493-afa6-40317e4297bc\",\r\n    \"RequiredSkills\": [\r\n        {\r\n            \"SkillName\": \"Python\",\r\n            \"SkillYearExperience\": 5\r\n        }\r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{scheme}}://{{host}}:{{port}}/company",
+											"protocol": "{{scheme}}",
+											"host": [
+												"{{host}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"company"
+											]
+										}
+									},
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": false,\n    \"message\": \"Ha ocurrido un error\",\n    \"payload\": \"(psycopg2.errors.UniqueViolation) llave duplicada viola restricción de unicidad «vacancies_VacancyLink_key»\\nDETAIL:  Ya existe la llave (\\\"VacancyLink\\\")=(https://google.com.co).\\n\\n[SQL: INSERT INTO vacancies (\\\"VacancyId\\\", \\\"CompanyId\\\", \\\"PositionName\\\", \\\"Salary\\\", \\\"Currency\\\", \\\"VacancyLink\\\", updated_at) VALUES (%(VacancyId)s, %(CompanyId)s, %(PositionName)s, %(Salary)s, %(Currency)s, %(VacancyLink)s, %(updated_at)s)]\\n[parameters: {'VacancyId': UUID('93d58067-719e-4be8-8230-259f67fea5a2'), 'CompanyId': UUID('e741e7b9-7b8d-4493-afa6-40317e4297bc'), 'PositionName': 'Backend Developer', 'Salary': None, 'Currency': None, 'VacancyLink': 'https://google.com.co', 'updated_at': None}]\\n(Background on this error at: https://sqlalche.me/e/14/gkpj)\",\n    \"datetime\": \"2022-12-11 11:50:20.026838\",\n    \"webmaster\": null\n}"
+								},
+								{
+									"name": "error no body",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"detail\": [\r\n        {\r\n            \"loc\": [\r\n                \"body\",\r\n                \"PositionName\"\r\n            ],\r\n            \"msg\": \"field required\",\r\n            \"type\": \"value_error.missing\"\r\n        },\r\n        {\r\n            \"loc\": [\r\n                \"body\",\r\n                \"RequiredSkills\"\r\n            ],\r\n            \"msg\": \"field required\",\r\n            \"type\": \"value_error.missing\"\r\n        }\r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{scheme}}://{{host}}:{{port}}/company",
+											"protocol": "{{scheme}}",
+											"host": [
+												"{{host}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"company"
+											]
+										}
+									},
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"detail\": [\n        {\n            \"loc\": [\n                \"body\",\n                \"CompanyName\"\n            ],\n            \"msg\": \"field required\",\n            \"type\": \"value_error.missing\"\n        }\n    ]\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "read",
+					"item": [
+						{
+							"name": "detail",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{scheme}}://{{host}}:{{port}}/vacancy/:vacancyId",
+									"protocol": "{{scheme}}",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"vacancy",
+										":vacancyId"
+									],
+									"variable": [
+										{
+											"key": "vacancyId",
+											"value": "ba404ba0-ff02-4b8b-b3e2-044ad3bd9ae8"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{scheme}}://{{host}}:{{port}}/company/:companyId",
+											"protocol": "{{scheme}}",
+											"host": [
+												"{{host}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"company",
+												":companyId"
+											],
+											"variable": [
+												{
+													"key": "companyId",
+													"value": "4f31a2ec-1f2d-4cef-8b96-d6f7aef8d54d"
+												}
+											]
+										}
+									},
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\r\n    \"success\": true,\r\n    \"message\": \"Operación exitosa!\",\r\n    \"payload\": {\r\n        \"VacancyId\": \"ba404ba0-ff02-4b8b-b3e2-044ad3bd9ae8\",\r\n        \"CompanyId\": \"e741e7b9-7b8d-4493-afa6-40317e4297bc\",\r\n        \"PositionName\": \"Backend Developer\",\r\n        \"Salary\": 6000000.0,\r\n        \"Currency\": null,\r\n        \"VacancyLink\": \"https://hunty.com\",\r\n        \"RequiredSkills\": [\r\n            {\r\n                \"SkillVacancyId\": \"4a6ab1a2-9263-4bd9-8467-e25d51af188c\",\r\n                \"SkillId\": \"e2954937-92fd-4f6a-8666-fc6a7fe22bbd\",\r\n                \"VacancyId\": \"ba404ba0-ff02-4b8b-b3e2-044ad3bd9ae8\",\r\n                \"SkillYearExperience\": \"5\"\r\n            }\r\n        ]\r\n    },\r\n    \"datetime\": \"2022-12-11 12:08:47.599441\",\r\n    \"webmaster\": null\r\n}"
+								},
+								{
+									"name": "no encontrado",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{scheme}}://{{host}}:{{port}}/company/:companyId",
+											"protocol": "{{scheme}}",
+											"host": [
+												"{{host}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"company",
+												":companyId"
+											],
+											"variable": [
+												{
+													"key": "companyId",
+													"value": "4f31a2ec-1f2d-4cef-8b96-d6f7aef8d54d"
+												}
+											]
+										}
+									},
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"message\": \"Ha ocurrido un error\",\n    \"payload\": \"No se ha encontrado ningún registro\",\n    \"datetime\": \"2022-12-11 12:08:47.599441\",\n    \"webmaster\": null\n}"
+								}
+							]
+						},
+						{
+							"name": "list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{scheme}}://{{host}}:{{port}}/vacancy?limit=10&offset=0",
+									"protocol": "{{scheme}}",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"vacancy"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "10"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "exitosa",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{scheme}}://{{host}}:{{port}}/company",
+											"protocol": "{{scheme}}",
+											"host": [
+												"{{host}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"company"
+											]
+										}
+									},
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"message\": \"Operación exitosa!\",\n    \"payload\": [\n        {\n            \"PositionName\": \"Backend Developer\",\n            \"Currency\": null,\n            \"created_at\": \"2022-12-11T11:47:50.415229-05:00\",\n            \"Salary\": null,\n            \"VacancyId\": \"8cc0fa50-6c8b-47ec-91de-32e8c66128f4\",\n            \"CompanyId\": null,\n            \"VacancyLink\": null,\n            \"updated_at\": null\n        },\n        {\n            \"PositionName\": \"Backend Developer\",\n            \"Currency\": \"COP\",\n            \"created_at\": \"2022-12-11T11:51:28.887533-05:00\",\n            \"Salary\": 3500000.0,\n            \"VacancyId\": \"1a417334-f026-4df3-86a2-d56bceee1d6b\",\n            \"CompanyId\": \"d570ea7b-e64c-449f-aff6-fcb35b9f60fc\",\n            \"VacancyLink\": \"https://www.hunty.com/some-vacancy\",\n            \"updated_at\": null\n        },\n        {\n            \"PositionName\": \"Backend Developer\",\n            \"Currency\": null,\n            \"created_at\": \"2022-12-11T11:52:05.803748-05:00\",\n            \"Salary\": null,\n            \"VacancyId\": \"a61628eb-822b-4f41-89d9-a107b4861cd6\",\n            \"CompanyId\": \"e741e7b9-7b8d-4493-afa6-40317e4297bc\",\n            \"VacancyLink\": null,\n            \"updated_at\": null\n        },\n        {\n            \"PositionName\": \"Backend Developer\",\n            \"Currency\": null,\n            \"created_at\": \"2022-12-11T11:53:47.538267-05:00\",\n            \"Salary\": null,\n            \"VacancyId\": \"bfc91e99-4cd1-4281-8abd-9ab32b7e823d\",\n            \"CompanyId\": \"e741e7b9-7b8d-4493-afa6-40317e4297bc\",\n            \"VacancyLink\": \"https://google.com.co\",\n            \"updated_at\": null\n        },\n        {\n            \"PositionName\": \"Backend Developer\",\n            \"Currency\": null,\n            \"created_at\": \"2022-12-11T11:55:12.270865-05:00\",\n            \"Salary\": 6000000.0,\n            \"VacancyId\": \"ba404ba0-ff02-4b8b-b3e2-044ad3bd9ae8\",\n            \"CompanyId\": \"e741e7b9-7b8d-4493-afa6-40317e4297bc\",\n            \"VacancyLink\": \"https://hunty.com\",\n            \"updated_at\": null\n        }\n    ],\n    \"datetime\": \"2022-12-11 12:08:47.599441\",\n    \"webmaster\": null\n}"
+								},
+								{
+									"name": "paginacion negativa",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{scheme}}://{{host}}:{{port}}/company",
+											"protocol": "{{scheme}}",
+											"host": [
+												"{{host}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"company"
+											]
+										}
+									},
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": false,\n    \"message\": \"Ha ocurrido un error\",\n    \"payload\": \"La paginación no es correcta: limit & offset > 0 limit < 1001\",\n    \"datetime\": \"2022-12-10 03:32:06.703902\",\n    \"webmaster\": null\n}"
+								}
+							]
+						},
+						{
+							"name": "list from company",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{scheme}}://{{host}}:{{port}}/vacancy/fromCompany/:companyId",
+									"protocol": "{{scheme}}",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"vacancy",
+										"fromCompany",
+										":companyId"
+									],
+									"variable": [
+										{
+											"key": "companyId",
+											"value": "e741e7b9-7b8d-4493-afa6-40317e4297bc"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "exitosa",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{scheme}}://{{host}}:{{port}}/company",
+											"protocol": "{{scheme}}",
+											"host": [
+												"{{host}}"
+											],
+											"port": "{{port}}",
+											"path": [
+												"company"
+											]
+										}
+									},
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"message\": \"Operación exitosa!\",\n    \"payload\": [\n        {\n            \"PositionName\": \"Backend Developer\",\n            \"Currency\": null,\n            \"created_at\": \"2022-12-11T11:52:05.803748-05:00\",\n            \"Salary\": null,\n            \"VacancyId\": \"a61628eb-822b-4f41-89d9-a107b4861cd6\",\n            \"CompanyId\": \"e741e7b9-7b8d-4493-afa6-40317e4297bc\",\n            \"VacancyLink\": null,\n            \"updated_at\": null\n        },\n        {\n            \"PositionName\": \"Backend Developer\",\n            \"Currency\": null,\n            \"created_at\": \"2022-12-11T11:53:47.538267-05:00\",\n            \"Salary\": null,\n            \"VacancyId\": \"bfc91e99-4cd1-4281-8abd-9ab32b7e823d\",\n            \"CompanyId\": \"e741e7b9-7b8d-4493-afa6-40317e4297bc\",\n            \"VacancyLink\": \"https://google.com.co\",\n            \"updated_at\": null\n        },\n        {\n            \"PositionName\": \"Backend Developer\",\n            \"Currency\": null,\n            \"created_at\": \"2022-12-11T11:55:12.270865-05:00\",\n            \"Salary\": 6000000.0,\n            \"VacancyId\": \"ba404ba0-ff02-4b8b-b3e2-044ad3bd9ae8\",\n            \"CompanyId\": \"e741e7b9-7b8d-4493-afa6-40317e4297bc\",\n            \"VacancyLink\": \"https://hunty.com\",\n            \"updated_at\": null\n        }\n    ],\n    \"datetime\": \"2022-12-11 12:08:47.599441\",\n    \"webmaster\": null\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "update",
+					"item": [
+						{
+							"name": "update basic",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"VacancyId\": \"b9d9fac3-3a25-4588-87a3-c54ba4485527\",\r\n    \"PositionName\": \"Backend SSr Developer\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{scheme}}://{{host}}:{{port}}/vacancy",
+									"protocol": "{{scheme}}",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"vacancy"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update append requirements",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"VacancyId\": \"b9d9fac3-3a25-4588-87a3-c54ba4485527\",\r\n    \"PositionName\": \"Backend\",\r\n    \"RequiredSkills\": [\r\n        {\r\n            \"SkillName\": \"AWS\",\r\n            \"SkillYearExperience\": 3\r\n        },\r\n        {\r\n            \"SkillName\": \"JS\",\r\n            \"SkillYearExperience\": 1\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{scheme}}://{{host}}:{{port}}/vacancy",
+									"protocol": "{{scheme}}",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"vacancy"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "delete",
+					"item": [
+						{
+							"name": "remove all from company",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{scheme}}://{{host}}:{{port}}/vacancy/fromCompany/:companyId",
+									"protocol": "{{scheme}}",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"vacancy",
+										"fromCompany",
+										":companyId"
+									],
+									"variable": [
+										{
+											"key": "companyId",
+											"value": "564d38ed-28bc-4de7-939f-84758e91e0f8"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "remove vacancy",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{scheme}}://{{host}}:{{port}}/vacancy/:vacancyId",
+									"protocol": "{{scheme}}",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"vacancy",
+										":vacancyId"
+									],
+									"variable": [
+										{
+											"key": "vacancyId",
+											"value": "1a417334-f026-4df3-86a2-d56bceee1d6b"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
